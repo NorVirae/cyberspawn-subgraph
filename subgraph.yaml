@@ -1,0 +1,50 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: CyberSpawnNFTMarketplace
+    network: mumbai
+    source:
+      address: "0xaE2408175EB92fCeC6183bF1feB2FE5d5d8F28C5"
+      abi: CyberSpawnNFTMarketplace
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - NFTMarketplaceContractDeployed
+        - OfferCancelled
+        - OfferCreated
+        - OfferPurchased
+        - PauseToggled
+        - UpdateAccessControls
+        - UpdateDiscountRate
+        - UpdateMarketplacePlatformFee
+        - UpdateOfferSalePrice
+        - UpdatePlatformFeeRecipient
+      abis:
+        - name: CyberSpawnNFTMarketplace
+          file: ./abis/CyberSpawnNFTMarketplace.json
+      eventHandlers:
+        - event: NFTMarketplaceContractDeployed()
+          handler: handleNFTMarketplaceContractDeployed
+        - event: OfferCancelled(indexed uint256,indexed uint256)
+          handler: handleOfferCancelled
+        - event: OfferCreated(indexed uint256,indexed uint256,indexed address,uint256)
+          handler: handleOfferCreated
+        - event: OfferPurchased(indexed uint256,indexed uint256,indexed address,address,uint256,uint256)
+          handler: handleOfferPurchased
+        - event: PauseToggled(bool)
+          handler: handlePauseToggled
+        - event: UpdateAccessControls(indexed address)
+          handler: handleUpdateAccessControls
+        - event: UpdateDiscountRate(uint256)
+          handler: handleUpdateDiscountRate
+        - event: UpdateMarketplacePlatformFee(uint256)
+          handler: handleUpdateMarketplacePlatformFee
+        - event: UpdateOfferSalePrice(indexed uint256,indexed uint256,uint256)
+          handler: handleUpdateOfferSalePrice
+        - event: UpdatePlatformFeeRecipient(address)
+          handler: handleUpdatePlatformFeeRecipient
+      file: ./src/cyber-spawn-nft-marketplace.ts
