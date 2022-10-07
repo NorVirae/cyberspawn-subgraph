@@ -60,13 +60,13 @@ export class Notification extends Entity {
     this.set("message", Value.fromString(value));
   }
 
-  get date(): i32 {
+  get date(): string {
     let value = this.get("date");
-    return value!.toI32();
+    return value!.toString();
   }
 
-  set date(value: i32) {
-    this.set("date", Value.fromI32(value));
+  set date(value: string) {
+    this.set("date", Value.fromString(value));
   }
 }
 
@@ -110,12 +110,12 @@ export class User extends Entity {
     this.set("notifications", Value.fromStringArray(value));
   }
 
-  get createdAt(): i32 {
+  get createdAt(): string {
     let value = this.get("createdAt");
-    return value!.toI32();
+    return value!.toString();
   }
 
-  set createdAt(value: i32) {
-    this.set("createdAt", Value.fromI32(value));
+  set createdAt(value: string) {
+    this.set("createdAt", Value.fromString(value));
   }
 }

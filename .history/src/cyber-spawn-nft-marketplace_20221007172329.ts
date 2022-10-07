@@ -52,7 +52,7 @@ export function handleOfferPurchased(event: OfferPurchased): void {
 
   if(!newUser){
     const user = new User(event.params.buyer.toString())
-    user.createdAt = event.block.timestamp.toString()
+    user.createdAt = event.block.timestamp.toU64()
     user.save()
   }
 }

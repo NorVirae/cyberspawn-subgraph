@@ -2,7 +2,7 @@ type Notification @entity(immutable: true) {
   id: ID!
   from: User!
   message: String!
-  date: String!
+  date: Int!
   
 }
 

@@ -31,7 +31,7 @@ export function handleOfferCreated(event: OfferCreated): void {
 
   if(newUser == null){
     const user = new User(event.params.owner.toString())
-    user.createdAt = event.block.timestamp.toString()
+    user.createdAt = event.block.timestamp.toU64()
     user.save()
   }
   
@@ -42,7 +42,7 @@ export function handleOfferPurchased(event: OfferPurchased): void {
   const newNotification = new Notification(event.block.timestamp.toHex())
   newNotification.from = event.params.buyer.toHexString()
   newNotification.message = "You started a Sale"
-  newNotification.date = event.block.timestamp.toString()
+  newNotification.date = event.block.timestamp.toU64()
   newNotification.save()
 
   
@@ -52,7 +52,7 @@ export function handleOfferPurchased(event: OfferPurchased): void {
 
   if(!newUser){
     const user = new User(event.params.buyer.toString())
-    user.createdAt = event.block.timestamp.toString()
+    user.createdAt = event.block.timestamp.toU64()
     user.save()
   }
 }

@@ -1,4 +1,13 @@
-type ExampleEntity @entity {
+type Notification @entity(immutable: true) {
   id: ID!
-  count: BigInt!
+  from: User!
+  message: String!
+  date: String!
+  
+}
+
+type User @entity(immutable: true){
+  id: ID!
+  notifications: [Notification!]! @derivedFrom(field: "from")
+  createdAt: String!
 }
