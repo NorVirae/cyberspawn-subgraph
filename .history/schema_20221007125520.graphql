@@ -1,6 +1,7 @@
 type Notification @entity(immutable: true) {
   id: ID!
   from: User!
+  to: User!
   message: String!
   date: Int!
   
@@ -9,5 +10,5 @@ type Notification @entity(immutable: true) {
 type User @entity(immutable: true){
   id: ID!
   notifications: [Notification!]! @derivedFrom(field: "from")
-  createdAt: Int!
+  createdAt: BigInt!
 }

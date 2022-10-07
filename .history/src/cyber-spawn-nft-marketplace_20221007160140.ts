@@ -15,6 +15,11 @@ import {
 import { User, Notification } from "../generated/schema"
 
 export function handleOfferCancelled(event: OfferCancelled): void {
+  const newNotification = new Notification(event.block.timestamp.toHex())
+  newNotification.from = event.params.owner.toHexString()
+  newNotification.message = "You started a Sale"
+  newNotification.date = event.block.timestamp.toU64()
+  newNotification.save()
 }
 
 export function handleOfferCreated(event: OfferCreated): void {
@@ -50,10 +55,10 @@ export function handleOfferPurchased(event: OfferPurchased): void {
   const newUser =  User.load(event.params.buyer.toString())
    
 
-  if(!newUser){
+  if(newUser == null){
     const user = new User(event.params.buyer.toString())
     user.createdAt = event.block.timestamp.toU32()
-    user.save()
+    user?.save()
   }
 }
 

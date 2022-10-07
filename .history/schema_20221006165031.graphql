@@ -1,0 +1,6 @@
+type Notification @entity(immutable: true) {
+  id: ID!
+  from: String!
+  to: String!
+  message: String;
+}

@@ -13,6 +13,7 @@ dataSources:
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
+        - NFTMarketplaceContractDeployed
         - OfferCancelled
         - OfferCreated
         - OfferPurchased
@@ -26,6 +27,8 @@ dataSources:
         - name: CyberSpawnNFTMarketplace
           file: ./abis/CyberSpawnNFTMarketplace.json
       eventHandlers:
+        - event: NFTMarketplaceContractDeployed()
+          handler: handleNFTMarketplaceContractDeployed
         - event: OfferCancelled(indexed uint256,indexed uint256)
           handler: handleOfferCancelled
         - event: OfferCreated(indexed uint256,indexed uint256,indexed address,uint256)

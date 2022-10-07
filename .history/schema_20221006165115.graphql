@@ -1,13 +1,11 @@
 type Notification @entity(immutable: true) {
   id: ID!
-  from: User!
+  from: String!
+  to: String!
   message: String!
-  date: Int!
-  
 }
 
 type User @entity(immutable: true){
   id: ID!
-  notifications: [Notification!]! @derivedFrom(field: "from")
-  createdAt: Int!
+  
 }
