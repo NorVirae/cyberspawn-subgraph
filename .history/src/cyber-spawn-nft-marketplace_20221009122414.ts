@@ -40,7 +40,7 @@ export function handleOfferCreated(event: OfferCreated): void {
 
 export function handleOfferPurchased(event: OfferPurchased): void {
   const newNotification = new Notification(event.block.timestamp.toHex())
-  newNotification.from = event.params.buyer.toString()
+  newNotification.from = event.params.buyer.toHexString()
   newNotification.message = "You Made a Purchase"
   newNotification.date = event.block.timestamp.toString()
   newNotification.save()
@@ -51,7 +51,7 @@ export function handleOfferPurchased(event: OfferPurchased): void {
    
 
   if(!newUser){
-    const user = new User(event.params.buyer.toHex())
+    const user = new User(event.params.buyer.toString())
     user.createdAt = event.block.timestamp.toString()
     user.save()
   }

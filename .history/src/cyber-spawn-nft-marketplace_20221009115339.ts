@@ -19,7 +19,7 @@ export function handleOfferCancelled(event: OfferCancelled): void {
 
 export function handleOfferCreated(event: OfferCreated): void {
   const newNotification = new Notification(event.transaction.hash.toHex())
-  newNotification.from = event.params.owner.toString()
+  newNotification.from = event.params.owner.toHexString()
   newNotification.message = "You started a Sale"
   newNotification.date = event.block.timestamp.toString()
   newNotification.save()
@@ -30,7 +30,7 @@ export function handleOfferCreated(event: OfferCreated): void {
    
 
   if(newUser == null){
-    const user = new User(event.params.owner.toHex())
+    const user = new User(event.params.owner.hex())
     user.createdAt = event.block.timestamp.toString()
     user.save()
   }
@@ -40,18 +40,18 @@ export function handleOfferCreated(event: OfferCreated): void {
 
 export function handleOfferPurchased(event: OfferPurchased): void {
   const newNotification = new Notification(event.block.timestamp.toHex())
-  newNotification.from = event.params.buyer.toString()
-  newNotification.message = "You Made a Purchase"
+  newNotification.from = event.params.buyer.toHexString()
+  newNotification.message = "You started a Sale"
   newNotification.date = event.block.timestamp.toString()
   newNotification.save()
 
   
   
-  const newUser =  User.load(event.params.buyer.toHex())
+  const newUser =  User.load(event.params.buyer.toString())
    
 
   if(!newUser){
-    const user = new User(event.params.buyer.toHex())
+    const user = new User(event.params.buyer.toString())
     user.createdAt = event.block.timestamp.toString()
     user.save()
   }
