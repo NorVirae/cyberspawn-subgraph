@@ -1,4 +1,0 @@
-type Notification @entity(immutable: true) {
-  id: ID!
-  count: BigInt!
-}

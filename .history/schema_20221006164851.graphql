@@ -1,4 +1,0 @@
-type Notification @entity {
-  id: ID!
-  count: BigInt!
-}

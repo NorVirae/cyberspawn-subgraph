@@ -1,5 +1,0 @@
-type Notification @entity(immutable: true) {
-  id: ID!
-  from: String!
-  to
-}

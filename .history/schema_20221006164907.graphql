@@ -1,4 +1,0 @@
-type Notification @entity(im) {
-  id: ID!
-  count: BigInt!
-}
